@@ -1,0 +1,18 @@
+<nav class="navbar navbar-light bg-light navbar-expand-md px-0">
+    <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.title |safe }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- TODO: build from _data file -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav">
+        {% assign nav_pages = site.pages | where: "nav_include","true" | sort: "nav_order" %}
+        {% for p in nav_pages %}
+          <li class="nav-item {% if p.url == page.url %}active{% endif %}"><a
+            class="nav-link" 
+            href="{{ p.url | relative_url }}">{{ p.title }}{% if p.url == page.url %}<span class="sr-only">(current)</span>{% endif %}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+</nav>
