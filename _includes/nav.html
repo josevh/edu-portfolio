@@ -4,7 +4,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- TODO: build from _data file -->
+    <!-- TODO: build from _data file 
+               see: https://jekyllrb.com/tutorials/navigation/#scenario-3-two-level-navigation-list
+                    https://jekyllrb.com/tutorials/navigation/#scenario-9-nested-tree-navigation-with-recursion
+
+                    or see if we can find subpages from the page variable
+                    or try using collections: https://jekyllrb.com/docs/collections/
+    -->
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav">
         {% assign nav_pages = site.pages | where: "nav_include","true" | sort: "nav_order" %}
