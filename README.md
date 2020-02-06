@@ -1,6 +1,10 @@
 # EDU Portfolio
 
-A purpose-built Jekyll theme created for my CSUMB ILP Portfolio.
+A **purpose-built** Jekyll theme created for my CSUMB ILP Portfolio.
+
+It **does not** handle blogging. It is meant to display courses grouped via Jekyll collections.
+
+**IT IS NOT MEANT TO BE USED BY OTHERS, BEWARE.**
 
 ## Installation
 
@@ -14,6 +18,9 @@ And add this line to your Jekyll site's `_config.yml`:
 
 ```yaml
 theme: edu-portfolio
+
+plugins:
+  - jekyll-seo-tag
 ```
 
 And then execute:
@@ -26,7 +33,46 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here. Describe your available layouts, includes, sass and/or assets.
+### Favicon
+Add your own `_includes/favicon.html` to set your favicon. Example:  
+```html
+<link rel="icon" type="image/png" href="/myicon.png">
+```
+
+### Google Analytics
+Add your tracking code to `_config.yml`
+```yaml
+google_analytics: UA-XXXXX-X
+```
+
+### Add your collections
+In `_config.yml`, example:
+```yaml
+collections:
+  col_1_name:  # e.g., "courses", "core", "concentration", "final", etc.
+    output: true  # REQUIRED
+    permalink: /:collection/:name
+    nav_include: true  # REQUIRED, Will be included in nav.
+    sort_by: nav_order  # REQUIRED, Defines how it will be sorted
+
+defaults:  # NOT required, but convenient.
+  -
+    scope:
+      path: ""
+      type: "col_1_name"
+    values:
+      layout: "page"
+      nav_order: 999
+```
+
+### Navbar
+Pages come **after** collections. To sort pages in navbar:
+```yaml
+---
+nav_order: 1
+---
+```
+
 
 ## Contributing
 

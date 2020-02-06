@@ -5,3 +5,44 @@ title: EDU Portfolio
 
 plugins:
     - jekyll-seo-tag
+
+
+collections:
+    first:
+        output: true
+        permalink: /:collection/:name
+        nav_include: true
+        sort_by: nav_order
+    second:
+        output: true
+        permalink: /:collection/:name
+        nav_include: true
+        sort_by: nav_order
+    third:
+        output: true
+        permalink: /:collection/:name
+        nav_include: true
+        sort_by: nav_order
+
+defaults:
+    -
+        scope:
+            path: ""
+            type: "first"
+        values:
+            layout: "page"
+            nav_order: 999
+    -
+        scope:
+            path: ""
+            type: "second"
+        values:
+            layout: "page"
+            nav_order: 999
+    -
+        scope:
+            path: ""
+            type: "third"
+        values:
+            layout: "page"
+            nav_order: 999

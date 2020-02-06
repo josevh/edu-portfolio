@@ -3,22 +3,33 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- TODO: build from _data file 
-               see: https://jekyllrb.com/tutorials/navigation/#scenario-3-two-level-navigation-list
-                    https://jekyllrb.com/tutorials/navigation/#scenario-9-nested-tree-navigation-with-recursion
-
-                    or see if we can find subpages from the page variable
-                    or try using collections: https://jekyllrb.com/docs/collections/
-    -->
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav">
-        {% assign nav_pages = site.pages | where: "nav_include","true" | sort: "nav_order" %}
-        {% for p in nav_pages %}
-          <li class="nav-item {% if p.url == page.url %}active{% endif %}"><a
-            class="nav-link" 
+        {%- assign colls = site.collections | where: "nav_include","true" -%}
+        {%- for c in colls -%}
+        {% comment %}TODO: better assigns{% endcomment %}
+        {%- assign url_part = "/" | append: c.label -%}
+        {%- assign url_part = url_part | append: "/" -%}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle {% if page.url contains url_part %}active{% endif %}" 
+            href="#" id="navbar-dropdown-{{ forloop.index }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ c.label | capitalize }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbar-dropdown-{{ forloop.index }}">
+            {%- for p in site[c.label] -%}
+            <a class="dropdown-item {% if p.url == page.url %}active{% endif %}" href="{{ p.url | relative_url }}">{{ p.title }}{% if p.url == page.url %}<span class="sr-only">(current)</span>{% endif %}</a>
+            {%- if p.path contains 'index' %}<div class="dropdown-divider"></div>{%endif%}
+            {%- endfor -%}
+          </div>
+        </li>
+        {%- endfor -%}
+ 
+        {%- assign nav_pages = site.pages | where: "nav_include","true" | sort: "nav_order" -%}
+        {%- for p in nav_pages -%}
+          <li class="nav-item"><a
+            class="nav-link {% if p.url == page.url %}active{% endif %}" 
             href="{{ p.url | relative_url }}">{{ p.title }}{% if p.url == page.url %}<span class="sr-only">(current)</span>{% endif %}</a></li>
-        {% endfor %}
+        {%- endfor -%}    
       </ul>
     </div>
-</nav>
+  </nav>
