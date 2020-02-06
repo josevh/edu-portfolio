@@ -6,6 +6,7 @@ title: EDU Portfolio
 plugins:
     - jekyll-seo-tag
 
+theme: "edu-portfolio"
 
 collections:
     first:
