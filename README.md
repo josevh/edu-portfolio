@@ -61,7 +61,7 @@ defaults:  # NOT required, but convenient.
       path: ""
       type: "col_1_name"
     values:
-      layout: "page"
+      layout: "course"
       nav_order: 999
 ```
 

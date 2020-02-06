@@ -30,19 +30,19 @@ defaults:
             path: ""
             type: "first"
         values:
-            layout: "page"
+            layout: "course"
             nav_order: 999
     -
         scope:
             path: ""
             type: "second"
         values:
-            layout: "page"
+            layout: "course"
             nav_order: 999
     -
         scope:
             path: ""
             type: "third"
         values:
-            layout: "page"
+            layout: "course"
             nav_order: 999
